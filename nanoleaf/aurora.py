@@ -89,17 +89,17 @@ class Aurora(object):
     @property
     def firmware(self):
         """Returns the firmware version of the device"""
-        return self.__get("firmwareVersion")
+        return self.__get()['firmwareVersion']
 
     @property
     def model(self):
         """Returns the model number of the device. (Always returns 'NL22')"""
-        return self.__get("model")
+        return self.__get()['model']
 
     @property
     def serial_number(self):
         """Returns the serial number of the device"""
-        return self.__get("serialNo")
+        return self.__get()['serialNo']
 
     def delete_user(self):
         """CAUTION: Revokes your auth token from the device."""
@@ -254,16 +254,12 @@ class Aurora(object):
     @property
     def color_temperature_min(self):
         """Returns the minimum color temperature possible. (This always returns 1200)"""
-        # return self.__get("state/ct/min")
-        # BUG: Firmware 1.5.0 returns the wrong value.
-        return 1200
+        return self.__get("state/ct/min")
 
     @property
     def color_temperature_max(self):
         """Returns the maximum color temperature possible. (This always returns 6500)"""
-        # return self.__get("state/ct/max")
-        # BUG: Firmware 1.5.0 returns the wrong value.
-        return 6500
+        return self.__get("state/ct/max")
 
     def color_temperature_raise(self, level):
         """Raise the color temperature of the device by a relative amount (negative lowers color temperature)"""
