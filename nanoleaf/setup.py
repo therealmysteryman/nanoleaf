@@ -57,7 +57,7 @@ def find_auroras(seek_time: float = 30):
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, SSDP_MX)
-    sock.bind((socket.gethostname(), 9090))
+    sock.bind(('', 9090))
     sock.sendto(req, (SSDP_IP, SSDP_PORT))
     sock.setblocking(False)
 
